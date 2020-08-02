@@ -26,19 +26,16 @@ def HowToMv(msg):
 
     if msg == 1:
         mv_dir = str(DCIM_Dir)
-        print('1')
     if msg == 2:
         mv_dir = str(WeiXin_Dir)
-        print('2')
     file_name = os.listdir(mv_dir)
-    print(file_name)
     for filename in file_name:
-        if os.path.isfile(filename) == True:
+        old_name = os.path.join(mv_dir, filename)
+        if os.path.isfile(old_name):
             if msg == 1:
-                print(str(PC_DCIM_Dir) + str(filename[int(filename.rfind('/')) - int(1):]))
-                shutil.move(filename, str(PC_DCIM_Dir) + str(filename[int(filename.rfind('/')) - int(1):]))
+                shutil.move(old_name, os.path.join(PC_DCIM_Dir, filename))
             if msg == 2:
-                shutil.move(filename, str(PC_WeiXin_Dir))
+                shutil.move(old_name, os.path.join(PC_WeiXin_Dir, filename))
         else:
             pass
 
